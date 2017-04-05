@@ -1,0 +1,2 @@
+console.log('this is example.service.spec.ts - <% name %>');
+//# sourceMappingURL=/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/scaffolds/Example/__name__.example.service/__name__.example.service.js.map

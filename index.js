@@ -1,0 +1,1 @@
+//# sourceMappingURL=/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/index.js.map
