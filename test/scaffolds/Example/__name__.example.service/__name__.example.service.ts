@@ -1,1 +1,0 @@
-console.log('this is example.service.spec.ts - <% name %>');

@@ -1,0 +1,1 @@
+console.log('this is example.ts - <%= name.toCamelCase() %>');

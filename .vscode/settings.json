@@ -11,5 +11,22 @@
         "**/*.js.map": {
             "when": "$(basename)"
         }
-    }
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.detectIndentation": false,
+    "search.exclude": {
+        "node_modules": true,
+        "**/*.d.ts": {
+            "when": "$(basename).ts"
+        },
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.js.map": {
+            "when": "$(basename)"
+        }
+    },
+    "typescript.check.workspaceVersion": false
 }

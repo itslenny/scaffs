@@ -24,11 +24,13 @@
       "./node_modules/@types"
     ],
     "types": [
-      "node"
+      "node",
+      "jasmine"
     ]
   },
   "exclude": [
     "node_modules/**/*",
-    "tmp/**/*"
+    "tmp/**/*",
+    "test/data/**/*"
   ]
 }

@@ -1,0 +1,1 @@
+console.log('this is example.service.ts - <%= name.toCamelCase() %>', <%= _.uniq(stuff.sort()).join(',') %>);
