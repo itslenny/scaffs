@@ -1,39 +1,43 @@
 {
-  "name": "scaffs",
-  "version": "0.0.1",
-  "description": "A simple language agnostic scaffolder",
-  "main": "index.js",
-  "scripts": {
-    "start": "tsc -w",
-    "test": "node test/test-runner.js",
-    "build": "tsc",
-    "lint": "tslint --type-check --project=tsconfig.json ./**/*.ts --exclude=./**/*.d.ts --exclude=./test/data/**/*.*"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/itslenny/scaffs.git"
-  },
-  "bin": {
-    "scaffs": "./bin/index.js"
-  },
-  "author": "Lenny Urbanowski",
-  "license": "MIT",
-  "dependencies": {
-    "fs-extra": "^2.1.2",
-    "jasmine-node": "^1.14.5",
-    "lodash": "^4.17.4",
-    "minimist": "^1.2.0"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^2.0.0",
-    "@types/jasmine": "^2.5.47",
-    "@types/jasmine-node": "^1.14.31",
-    "@types/lodash": "^4.14.61",
-    "@types/minimist": "^1.2.0",
-    "@types/node": "^7.0.12",
-    "jasmine": "^2.5.3",
-    "tslint": "^5.0.0",
-    "tslint-eslint-rules": "^4.0.0",
-    "typescript": "^2.2.2"
-  }
+    "name": "scaffs",
+    "version": "0.0.1",
+    "description": "A simple language agnostic scaffolder",
+    "main": "index.js",
+    "scripts": {
+        "start": "tsc -w",
+        "test": "node test/test-runner.js",
+        "build": "tsc",
+        "lint": "tslint --type-check --project=tsconfig.json ./**/*.ts --exclude=./**/*.d.ts --exclude=./test/data/**/*.*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/itslenny/scaffs.git"
+    },
+    "bin": {
+        "scaffs": "./bin/index.js"
+    },
+    "author": "Lenny Urbanowski",
+    "license": "MIT",
+    "engineStrict": true,
+    "engines": {
+        "iojs": ">=4.0.0"
+    },
+    "dependencies": {
+        "fs-extra": "^2.1.2",
+        "jasmine-node": "^1.14.5",
+        "lodash": "^4.17.4",
+        "minimist": "^1.2.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^2.0.0",
+        "@types/jasmine": "^2.5.47",
+        "@types/jasmine-node": "^1.14.31",
+        "@types/lodash": "^4.14.61",
+        "@types/minimist": "^1.2.0",
+        "@types/node": "^7.0.12",
+        "jasmine": "^2.5.3",
+        "tslint": "^5.0.0",
+        "tslint-eslint-rules": "^4.0.0",
+        "typescript": "^2.2.2"
+    }
 }
