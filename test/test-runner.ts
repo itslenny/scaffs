@@ -10,6 +10,7 @@ import * as jasmine from 'jasmine-node';
 const options: jasmine.ExecuteSpecsOptions = {
     specFolders: ['./src'],
     regExpSpec: /\.spec\.js/,
+    isVerbose: true,
 };
 
 jasmine.executeSpecsInFolder(options);
