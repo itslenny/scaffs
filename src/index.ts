@@ -4,7 +4,12 @@
  */
 
 import { ScaffoldLoader } from './lib/scaffold-loader';
-import { ScaffoldTemplater, TemplateOptions } from './lib/scaffold-templater';
+import { ScaffoldTemplater } from './lib/scaffold-templater';
+import { ScaffsConfigLoader } from './lib/scaffs-config-loader';
+import { TemplateOptions } from './contracts/template-options';
+import { ScaffsConfig } from './contracts/scaffs-config';
+
+// import * as path from 'path';
 
 export module Scaffolder {
 
@@ -15,13 +20,43 @@ export module Scaffolder {
      * @param targetPath - path where the item should be generated
      * @param options - options used for template generation
      */
-    export function scaffold(scaffoldPath: string, targetPath: string, options: TemplateOptions): Promise<void> {
-        return ScaffoldLoader.parseDirectory(scaffoldPath)
-            .then(fileTree => ScaffoldTemplater.generateScaffold(fileTree, targetPath, options));
+    export function scaffoldFromPath(scaffoldPath: string, targetPath: string, options: TemplateOptions): Promise<void> {
+        return ScaffoldLoader.loadScaffoldFromPath(scaffoldPath)
+            .then(scaffold => ScaffoldTemplater.generateScaffold(scaffold, targetPath, options));
+    }
+
+    export function scaffold(config: ScaffsConfig, scaffoldName: string, targetPath: string, options: TemplateOptions): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            if (!config.absoluteScaffPaths) {
+                reject('Scaffold paths have not been resolved.');
+                return;
+            }
+            const scaffoldPath = config.absoluteScaffPaths[scaffoldName];
+
+            if (!scaffoldPath) {
+                reject('Unable to find scaffold. Make sure it\'s defined in your .scaffs-config.json');
+                return;
+            }
+
+            resolve(scaffoldFromPath(scaffoldPath, targetPath, options));
+        });
+    }
+
+    export function loadScaffsConfig(configPath: string): Promise<ScaffsConfig> {
+        return ScaffsConfigLoader.loadConfig(configPath)
+            .then(ScaffsConfigLoader.resolveScaffolds);
     }
 }
 
-// let source = './test/scaffolds/Example';
+// TEST LOAD CONFIG
+// let configBasePath = path.resolve(__dirname, '../test/data/projects/basic-test-project');
+// let configPath = path.resolve(configBasePath, '.scaffs-config.json');
+// Scaffolder.loadScaffsConfig(configPath)
+//     .then(config => console.log('config', config))
+//     .catch(e => console.log('config error', e));
+
+// TEST PROGRAMMATIC USAGE
+// let source = './test/data/scaffolds/Example';
 // let target = './test/output'
 // let options: TemplateOptions = {
 //     data: {
@@ -30,4 +65,4 @@ export module Scaffolder {
 //     },
 // };
 
-// Scaffolder.scaffold(source, target, options).then(() => console.log('DONE!!!'));
+// Scaffolder.scaffoldFromPath(source, target, options).then(() => console.log('DONE!!!'));

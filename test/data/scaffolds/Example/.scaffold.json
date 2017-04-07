@@ -1,0 +1,9 @@
+{
+    "variables": [
+        "stuff",
+        {
+            "name": "otherStuff",
+            "optional": true
+        }
+    ]
+}

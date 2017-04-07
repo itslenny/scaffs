@@ -1,0 +1,8 @@
+{
+    "scaffsPaths": [
+        "../../scaffolds"
+    ],
+    "scaffs": {
+        "ExampleAlias": "../../scaffolds/Example"
+    }
+}

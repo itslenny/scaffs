@@ -1,6 +1,6 @@
 {
   "name": "scaffs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple language agnostic scaffolder",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "tsc",
     "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\" && npm run clean:test-output",
     "clean:test-output" : "rimraf test/output",
-    "lint": "tslint --type-check --project=tsconfig.json ./**/*.ts --exclude=./**/*.d.ts --exclude=./test/data/**/*.*"
+    "lint": "tslint \"**/*.ts\" --type-check --project=tsconfig.json --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.*",
+    "tslint": "tslint"
   },
   "repository": {
     "type": "git",

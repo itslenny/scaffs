@@ -1,8 +1,7 @@
 {
-    "file": "Example",
-    "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/data/scaffolds/Example",
-    "type": 1,
-    "children": [
+    "name": "Example",
+    "config": null,
+    "files": [
         {
             "file": "___.uniq(stuff).join('-')__.example.ts",
             "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/data/scaffolds/Example/___.uniq(stuff).join('-')__.example.ts",
@@ -23,18 +22,6 @@
                 {
                     "file": "__name.toKebabCase()__.example.service.ts",
                     "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/data/scaffolds/Example/__name.toKebabCase()__.example.service/__name.toKebabCase()__.example.service.ts",
-                    "type": 0,
-                    "children": []
-                },
-                {
-                    "file": "__name__.example.service.d.ts",
-                    "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/data/scaffolds/Example/__name.toKebabCase()__.example.service/__name__.example.service.d.ts",
-                    "type": 0,
-                    "children": []
-                },
-                {
-                    "file": "__name__.example.service.spec.d.ts",
-                    "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffolder-npm/test/data/scaffolds/Example/__name.toKebabCase()__.example.service/__name__.example.service.spec.d.ts",
                     "type": 0,
                     "children": []
                 }

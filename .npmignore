@@ -1,5 +1,8 @@
 **/*.ts
+!**/*.d.ts
+**/*.yml
 .vscode
+.DS_Store
 node_modules
 test
 tsconfig.json

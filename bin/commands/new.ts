@@ -3,35 +3,49 @@
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
 
-import { TemplateOptionsData } from '../../src/lib/scaffold-templater';
+import * as path from 'path';
+
+import { TemplateOptionsData, TemplateOptions } from '../../src/contracts/template-options';
 import { Scaffolder } from '../../src';
 
 const JSON_STRING_REGEXP = /^[\[|\{].*[\]|\}]$/;
+const cwd = process.cwd();
 
 export function newCommand(cliArguments: any) {
     let data: TemplateOptionsData = cliArguments.data || {};
-    let name = data.name = cliArguments._.join(' ');
+    const scaffoldName = cliArguments._.join(' ');
 
-    //TODO: look in .scaffs.json / node_modules
+    //TODO: load scaffold config so we know the variables
+    //TODO: prompt for missing data
+
+    let name = data.name;
 
     let sourcePath = cliArguments.scaffold;
-    let targetPath = cliArguments.target;
+    let targetPath = path.resolve(cwd, cliArguments.target);
 
     if (!name) {
         console.error('name is required');
         process.exit(1);
     }
 
-    if (!sourcePath || !targetPath) {
-        console.error('--scaffold and --target are required');
+    if (!targetPath) {
+        console.error('--target is required');
         process.exit(1);
     }
 
     console.log('Generating scaffold...');
 
-    Scaffolder.scaffold(sourcePath, targetPath, { data: parseInputData(data) })
-        .then(() => console.log('Generation successful!'))
-        .catch((e: string) => { throw new Error(e); });
+    const templateOptions: TemplateOptions = { data: parseInputData(data) };
+
+    if (sourcePath) {
+        Scaffolder.scaffoldFromPath(sourcePath, targetPath, templateOptions)
+            .then(() => console.log('Generation successful!'))
+            .catch((e: string) => { throw new Error(e); });
+    } else {
+        Scaffolder.loadScaffsConfig(path.join(cwd, '.scaffs-config.json'))
+            .then((config) => Scaffolder.scaffold(config, scaffoldName, targetPath, templateOptions))
+            .catch((e: string) => { throw new Error(e); });
+    }
 }
 
 /**

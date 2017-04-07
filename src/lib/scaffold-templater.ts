@@ -7,18 +7,11 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as _ from 'lodash';
 
-import { FileDataNode, FileDataNodeType } from './scaffold-loader';
+import { FileDataNode, FileDataNodeType, Scaffold } from '../contracts/scaffold';
 import { TemplateString } from './template-string';
+import { TemplateOptions, TemplateOptionsData } from '../contracts/template-options';
 
 const FILE_NAME_REGEXP = /__.*?__/ig;
-
-export interface TemplateOptionsData {
-    [key: string]: any;
-}
-
-export interface TemplateOptions {
-    data: TemplateOptionsData;
-}
 
 export module ScaffoldTemplater {
 
@@ -29,7 +22,7 @@ export module ScaffoldTemplater {
      * @param targetPath - path where the scaffold should be created
      * @param options - options used to generate the template
      */
-    export function generateScaffold(fileTree: FileDataNode, targetPath: string, options?: TemplateOptions): Promise<void> {
+    export function generateScaffold(fileTree: Scaffold, targetPath: string, options?: TemplateOptions): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             try {
                 options.data = TemplateString.convertToTemplateStrings(options && options.data || {});
@@ -41,7 +34,7 @@ export module ScaffoldTemplater {
 
                 fs.ensureDirSync(targetPath);
 
-                scaffoldFileNode(fileTree.children, targetPath, options);
+                scaffoldFileNode(fileTree.files, targetPath, options);
                 resolve();
             } catch (e) {
                 reject(e);
