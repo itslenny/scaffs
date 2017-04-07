@@ -4,8 +4,9 @@
     "description": "A simple language agnostic scaffolder",
     "main": "index.js",
     "scripts": {
-        "test": "node test/test-runner.js",
         "start": "tsc -w",
+        "test": "node test/test-runner.js",
+        "build": "tsc",
         "lint": "tslint --type-check --project=tsconfig.json ./**/*.ts --exclude=./**/*.d.ts --exclude=./test/data/**/*.*"
     },
     "repository": {
