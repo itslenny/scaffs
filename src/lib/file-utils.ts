@@ -9,7 +9,7 @@ export module FileUtils {
 
     export function existsSync(path: string): boolean {
         try {
-            fs.accessSync(path)
+            fs.accessSync(path);
         } catch (e) {
             return false;
         }

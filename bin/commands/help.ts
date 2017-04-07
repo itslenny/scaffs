@@ -12,8 +12,10 @@ export function helpCommand(cliArguments: Object) {
     console.log('----------------');
     console.log(' ');
     for (let name in commands) {
-        let { help } = commands[name];
-        console.log(`${name} - ${help}`)
+        if (commands.hasOwnProperty(name)) {
+            let { help } = commands[name];
+            console.log(`${name} - ${help}`);
+        }
     }
     console.log(' ');
 }
