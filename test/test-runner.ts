@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) Lenny Urbanowski 2017.
+ * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+ */
+
 import * as jasmine from 'jasmine-node';
 
 // Jasmine
@@ -5,8 +10,8 @@ import * as jasmine from 'jasmine-node';
 const options: jasmine.ExecuteSpecsOptions = {
     specFolders: ['./src'],
     regExpSpec: /\.spec\.js/,
+};
 
-}
 jasmine.executeSpecsInFolder(options);
 
 // let SpecReporter = require('jasmine-spec-reporter');

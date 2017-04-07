@@ -6,6 +6,10 @@
         "class-name": true,
         "curly": true,
         "eofline": false,
+        "file-header": [
+            true,
+            "Distributed under the MIT License"
+        ],
         "forin": true,
         "label-position": true,
         "max-file-line-count": [

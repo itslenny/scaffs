@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) Lenny Urbanowski 2017.
+ * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+ */
+
 import * as path from 'path';
 import * as fs from 'fs-extra';
 

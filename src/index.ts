@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) Lenny Urbanowski 2017.
+ * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+ */
+
 import { ScaffoldLoader } from './lib/scaffold-loader';
 import { ScaffoldTemplater, TemplateOptions } from './lib/scaffold-templater';
 

@@ -1,3 +1,7 @@
+/**
+ * Copyright (C) Lenny Urbanowski 2017.
+ * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+ */
 
 const WORD_SPLIT_REGEXP = / \S|^\S/ig;
 const WORD_SPLIT_SKIP_FIRST_REGEXP = / \S/ig;
