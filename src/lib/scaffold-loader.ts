@@ -58,8 +58,8 @@ export module ScaffoldLoader {
                     let isDirectory = fs.statSync(fullPath).isDirectory();
 
                     return {
-                        file: file,
-                        fullPath: fullPath,
+                        file,
+                        fullPath,
                         type: isDirectory ? FileDataNodeType.Directory : FileDataNodeType.File,
                         children: isDirectory ? <FileDataNode[]>getFiles(fullPath) : [],
                     };

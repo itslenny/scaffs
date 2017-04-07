@@ -7,7 +7,8 @@
     "start": "tsc -w",
     "test": "node test/test-runner.js",
     "build": "tsc",
-    "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\"",
+    "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\" && npm run clean:test-output",
+    "clean:test-output" : "rimraf test/output",
     "lint": "tslint --type-check --project=tsconfig.json ./**/*.ts --exclude=./**/*.d.ts --exclude=./test/data/**/*.*"
   },
   "repository": {
