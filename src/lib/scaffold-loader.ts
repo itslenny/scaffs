@@ -3,11 +3,11 @@
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
 
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { FileUtils } from './file-utils';
-import { Scaffold, FileDataNode, FileDataNodeType } from '../contracts/scaffold';
+import { Scaffold, FileDataNode, FileDataNodeType, ScaffoldConfig } from '../contracts/scaffold';
 import { ScaffsConfig } from '../contracts/scaffs-config';
 
 export module ScaffoldLoader {
@@ -34,11 +34,14 @@ export module ScaffoldLoader {
                 return;
             }
 
-            resolve({
-                name: path.basename(baseFilePath),
-                config: null,
-                files: parseScaffoldFiles(baseFilePath),
-            });
+            resolve(
+                loadScaffoldConfig(baseFilePath)
+                    .then(scaffoldConfig => ({
+                        name: path.basename(baseFilePath),
+                        config: scaffoldConfig,
+                        files: parseScaffoldFiles(baseFilePath),
+                    })),
+            );
         });
     }
 
@@ -66,5 +69,19 @@ export module ScaffoldLoader {
                 });
         } catch (e) { /* just continue on error and return [] */ }
         return [];
+    }
+
+    /**
+     * loads the .scaffold.json config from the root of a scaffold
+     */
+    function loadScaffoldConfig(scaffoldPath: string): Promise<ScaffoldConfig> {
+        return new Promise((resolve, reject) => {
+            const configPath = path.join(scaffoldPath, '.scaffold.json');
+            try {
+                resolve(fs.readJsonSync(configPath));
+            } catch (e) {
+                reject(e);
+            }
+        });
     }
 }

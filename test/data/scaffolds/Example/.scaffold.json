@@ -1,5 +1,6 @@
 {
     "variables": [
+        "name",
         "stuff",
         {
             "name": "otherStuff",

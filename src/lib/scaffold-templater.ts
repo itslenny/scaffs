@@ -22,7 +22,7 @@ export module ScaffoldTemplater {
      * @param targetPath - path where the scaffold should be created
      * @param options - options used to generate the template
      */
-    export function generateScaffold(fileTree: Scaffold, targetPath: string, options?: TemplateOptions): Promise<void> {
+    export function generateScaffold(scaffold: Scaffold, targetPath: string, options?: TemplateOptions): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             try {
                 options.data = TemplateString.convertToTemplateStrings(options && options.data || {});
@@ -34,7 +34,7 @@ export module ScaffoldTemplater {
 
                 fs.ensureDirSync(targetPath);
 
-                scaffoldFileNode(fileTree.files, targetPath, options);
+                scaffoldFileNode(scaffold.files, targetPath, options);
                 resolve();
             } catch (e) {
                 reject(e);

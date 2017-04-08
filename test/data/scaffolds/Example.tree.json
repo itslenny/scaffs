@@ -1,6 +1,15 @@
 {
     "name": "Example",
-    "config": null,
+    "config": {
+        "variables": [
+            "name",
+            "stuff",
+            {
+                "name": "otherStuff",
+                "optional": true
+            }
+        ]
+    },
     "files": [
         {
             "file": "___.uniq(stuff).join('-')__.example.ts",
