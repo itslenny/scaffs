@@ -25,14 +25,17 @@ export interface FileDataNode {
  * Configuration for a scaffold (.scaffold.json)
  */
 export interface ScaffoldConfig {
-    variables: { [key: string]: string | ScaffoldVariableConfig };
+    variables: ScaffoldVariable[];
 }
+
+export type ScaffoldVariable = string | ScaffoldVariableConfig;
 
 /**
  * Configuration for individual scaffold variables
  */
 export interface ScaffoldVariableConfig {
     name: string;
+    prompt?: string;
     optional?: boolean;
 }
 

@@ -31,6 +31,7 @@
   "exclude": [
     "node_modules/**/*",
     "tmp/**/*",
-    "test/data/**/*"
+    "test/data/**/*",
+    "test/output/**/*"
   ]
 }

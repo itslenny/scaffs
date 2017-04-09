@@ -8,7 +8,7 @@
     "test": "node test/test-runner.js",
     "build": "tsc",
     "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\" && npm run clean:test-output",
-    "clean:test-output" : "rimraf test/output",
+    "clean:test-output": "rimraf test/output",
     "lint": "tslint \"**/*.ts\" --type-check --project=tsconfig.json --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.* --exclude=test/output/**/*.*",
     "tslint": "tslint"
   },
@@ -29,7 +29,8 @@
     "fs-extra": "^2.1.2",
     "jasmine-node": "^1.14.5",
     "lodash": "^4.17.4",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "prompt-sync": "^4.1.4"
   },
   "devDependencies": {
     "@types/fs-extra": "^2.0.0",
@@ -38,6 +39,7 @@
     "@types/lodash": "^4.14.61",
     "@types/minimist": "^1.2.0",
     "@types/node": "^7.0.12",
+    "@types/prompt-sync": "^4.1.0",
     "jasmine": "^2.5.3",
     "rimraf": "^2.6.1",
     "tslint": "^5.0.0",

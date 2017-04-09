@@ -9,19 +9,21 @@ import * as path from 'path';
 import { FileUtils } from './file-utils';
 import { ScaffsConfig } from '../contracts/scaffs-config';
 
+const SCAFFS_CONFIG_FILE = '.scaffs-config.json';
+
 export module ScaffsConfigLoader {
 
     /**
      * Loads a .scaffs-config.json
      *
-     * @param path - absolute path to a scaffs config file
+     * @param path - absolute path to the directory containing .scaffs-config.json
      */
-    export function loadConfig(configPath: string): Promise<ScaffsConfig> {
+    export function loadConfig(projectRoot: string): Promise<ScaffsConfig> {
         return new Promise((resolve, reject) => {
             try {
-                let config = fs.readJsonSync(configPath);
+                let config = fs.readJsonSync(path.join(projectRoot, SCAFFS_CONFIG_FILE));
                 if (!config.baseConfigPath) {
-                    config.baseConfigPath = path.dirname(configPath);
+                    config.baseConfigPath = path.dirname(projectRoot);
                 }
                 resolve(config);
 

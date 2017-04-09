@@ -8,8 +8,7 @@ import { ScaffoldTemplater } from './lib/scaffold-templater';
 import { ScaffsConfigLoader } from './lib/scaffs-config-loader';
 import { TemplateOptions } from './contracts/template-options';
 import { ScaffsConfig } from './contracts/scaffs-config';
-
-// import * as path from 'path';
+import { ScaffoldConfig } from './contracts/scaffold';
 
 export module Scaffolder {
 
@@ -21,17 +20,13 @@ export module Scaffolder {
      * @param options - options used for template generation
      */
     export function scaffoldFromPath(scaffoldPath: string, targetPath: string, options: TemplateOptions): Promise<void> {
-        return ScaffoldLoader.loadScaffoldFromPath(scaffoldPath)
+        return ScaffoldLoader.loadScaffold(scaffoldPath)
             .then(scaffold => ScaffoldTemplater.generateScaffold(scaffold, targetPath, options));
     }
 
     export function scaffold(config: ScaffsConfig, scaffoldName: string, targetPath: string, options: TemplateOptions): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            if (!config.absoluteScaffPaths) {
-                reject('Scaffold paths have not been resolved.');
-                return;
-            }
-            const scaffoldPath = config.absoluteScaffPaths[scaffoldName];
+            const scaffoldPath = getScaffoldPath(config, scaffoldName);
 
             if (!scaffoldPath) {
                 reject('Unable to find scaffold. Make sure it\'s defined in your .scaffs-config.json');
@@ -42,9 +37,30 @@ export module Scaffolder {
         });
     }
 
+    export function loadScaffoldConfig(config: ScaffsConfig, scaffoldName: string): Promise<ScaffoldConfig> {
+        return new Promise((resolve, reject) => {
+            const scaffoldPath = getScaffoldPath(config, scaffoldName);
+
+            if (!scaffoldPath) {
+                reject('Unable to find scaffold. Make sure it\'s defined in your .scaffs-config.json');
+                return;
+            }
+
+            resolve(ScaffoldLoader.loadScaffoldConfig(scaffoldPath));
+        });
+    }
+
+    export function loadScaffoldConfigFromPath(scaffoldPath: string): Promise<ScaffoldConfig> {
+        return ScaffoldLoader.loadScaffoldConfig(scaffoldPath);
+    }
+
     export function loadScaffsConfig(configPath: string): Promise<ScaffsConfig> {
         return ScaffsConfigLoader.loadConfig(configPath)
             .then(ScaffsConfigLoader.resolveScaffolds);
+    }
+
+    export function getScaffoldPath(config: ScaffsConfig, scaffoldName: string): string {
+        return config.absoluteScaffPaths && config.absoluteScaffPaths[scaffoldName];
     }
 }
 

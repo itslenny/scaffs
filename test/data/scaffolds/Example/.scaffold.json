@@ -3,6 +3,7 @@
         "name",
         "stuff",
         {
+            "prompt": "Enter a value for other stuff (string)",
             "name": "otherStuff",
             "optional": true
         }

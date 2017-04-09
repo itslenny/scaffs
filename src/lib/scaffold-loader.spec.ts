@@ -12,7 +12,7 @@ describe('ScaffoldLoader', () => {
 
     it('should check for valid file path', done => {
         const badPath = path.resolve(__dirname, 'a/path/that/should/never/exist');
-        ScaffoldLoader.loadScaffoldFromPath(badPath)
+        ScaffoldLoader.loadScaffold(badPath)
             .then(() => done('Then should not have been called'))
             .catch(() => done());
     });
@@ -22,9 +22,8 @@ describe('ScaffoldLoader', () => {
         const expectedScaffoldDataPath = path.resolve(__dirname, '../../test/data/scaffolds/Example.tree.json');
         const expectedScaffoldData = fs.readJsonSync(expectedScaffoldDataPath);
 
-        ScaffoldLoader.loadScaffoldFromPath(exampleScaffoldPath)
+        ScaffoldLoader.loadScaffold(exampleScaffoldPath)
             .then((data) => {
-                // console.log('data', JSON.stringify(data, null, 4));
                 expect(data).toEqual(expectedScaffoldData);
                 done();
             })

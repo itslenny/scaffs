@@ -5,46 +5,67 @@
 
 import * as path from 'path';
 
-import { TemplateOptionsData, TemplateOptions } from '../../src/contracts/template-options';
+import { TemplateOptionsData } from '../../src/contracts/template-options';
 import { Scaffolder } from '../../src';
+import { ScaffoldConfig } from '../../src/contracts/scaffold';
+import * as syncPrompt from 'prompt-sync';
+const prompt = syncPrompt();
 
 const JSON_STRING_REGEXP = /^[\[|\{].*[\]|\}]$/;
 const cwd = process.cwd();
 
-export function newCommand(cliArguments: any) {
+export function newCommand(cliArguments: any): void {
     let data: TemplateOptionsData = cliArguments.data || {};
     const scaffoldName = cliArguments._.join(' ');
 
-    //TODO: load scaffold config so we know the variables
-    //TODO: prompt for missing data
-
-    let name = data.name;
-
     let sourcePath = cliArguments.scaffold;
-    let targetPath = path.resolve(cwd, cliArguments.target);
+    let targetPath = cliArguments.target;
 
-    if (!name) {
-        console.error('name is required');
+    if (!sourcePath && !scaffoldName) {
+        console.log('What do you want to create? Source path or scaffold name is required');
         process.exit(1);
     }
 
     if (!targetPath) {
-        console.error('--target is required');
+        targetPath = prompt(`Target path (where the scaffold will be created): `);
+    }
+
+    if (!targetPath) {
+        console.log('Unable to scaffold - Target path is required');
         process.exit(1);
     }
 
+    targetPath = path.resolve(cwd, targetPath);
+
     console.log('Generating scaffold...');
 
-    const templateOptions: TemplateOptions = { data: parseInputData(data) };
+    if (sourcePath) { // Load from specified path if provided
 
-    if (sourcePath) {
-        Scaffolder.scaffoldFromPath(sourcePath, targetPath, templateOptions)
-            .then(() => console.log('Generation successful!'))
-            .catch((e: string) => { throw new Error(e); });
-    } else {
-        Scaffolder.loadScaffsConfig(path.join(cwd, '.scaffs-config.json'))
-            .then((config) => Scaffolder.scaffold(config, scaffoldName, targetPath, templateOptions))
-            .catch((e: string) => { throw new Error(e); });
+        // load scaffold config from scaffold path
+        Scaffolder.loadScaffoldConfigFromPath(sourcePath)
+            // get / parse user provided scaffold data
+            .then(scaffoldConfig => ({ data: parseInputData(getScaffoldVariables(scaffoldConfig, data)) }))
+            .then((templateOptions) =>
+                // run the scaffold with the provided paths and data
+                Scaffolder.scaffoldFromPath(sourcePath, targetPath, templateOptions)
+                    .then(() => console.log('Generation successful!'))
+                    .catch((e: string) => { throw new Error(e); }),
+        );
+
+    } else { // If there is no scaffold path load it by name
+
+        // loads the scaffs config from the project root
+        // TODO: maybe allow this to crawl upward and find a config in a parent folder
+        Scaffolder.loadScaffsConfig(cwd)
+            .then((scaffsConfig) =>
+                // load the scaffold config based on the scaffold name (loaded based on the scaffsConfig)
+                Scaffolder.loadScaffoldConfig(scaffsConfig, scaffoldName)
+                    // get / parse user provided scaffold data
+                    .then(scaffoldConfig => ({ data: parseInputData(getScaffoldVariables(scaffoldConfig, data)) }))
+                    // run the scaffold based on the scaffold name (loaded based on the scaffsConfig)
+                    .then(templateOptions => Scaffolder.scaffold(scaffsConfig, scaffoldName, targetPath, templateOptions))
+                    .catch((e: string) => { throw new Error(e); }),
+        );
     }
 }
 
@@ -68,4 +89,25 @@ function parseInputData(data: any): Object {
         } catch (e) { }
     }
     return data;
+}
+
+function getScaffoldVariables(config: ScaffoldConfig, data: TemplateOptionsData): TemplateOptionsData {
+    let variablesResult: TemplateOptionsData = {};
+    let variables = config.variables;
+    for (let i = 0, len = variables.length; i < len; i++) {
+        let variable = variables[i];
+        let variableName = typeof variable === 'object' ? variable.name : variable;
+        let variableOptional = typeof variable === 'object' ? variable.optional : false;
+        if (data[variableName]) {
+            variablesResult[variableName] = data[variableName];
+        } else {
+            let variablePrompt = typeof variable === 'object' ? (variable.prompt || variableName) : variableName;
+            variablesResult[variableName] = prompt(`${variablePrompt}: `);
+        }
+        if (!variableOptional && !variablesResult[variableName]) {
+            console.log(`Unable to scaffold - ${variableName} is required`);
+            process.exit(1);
+        }
+    }
+    return variablesResult;
 }

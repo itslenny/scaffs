@@ -1,0 +1,3 @@
+<% if(otherStuff && otherStuff.length) { %>
+Other stuff: <%= otherStuff %>
+<% } %>
