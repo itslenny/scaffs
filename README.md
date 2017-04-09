@@ -87,3 +87,17 @@ docs comming...
 ## Plugins
 
 * soon!
+
+## Contributing
+
+* [Contributing to Scaffs](CONTRIBUTING.md)
+* Contributing a Scaff
+
+## TODO
+
+* Add comments
+* Add more tests
+* Break up documentation into separate pages
+* Add more examples / animated gifs
+* Create scaff scaff
+* Create test-project scaff
