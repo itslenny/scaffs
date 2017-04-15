@@ -16,7 +16,19 @@ describe('TemplateString', () => {
             expect(result).toEqual(source);
         });
 
-        it('should convert complex object into TemplateStrings', () => {
+        it('should convert array of strings into array of TemplateStrings', () => {
+            const source = ['a', 'b', 'c',];
+
+            let result = TemplateString.convertToTemplateStrings(source);
+
+            expect(result instanceof TemplateString).toBe(false);
+            expect(result[0] instanceof TemplateString).toBe(true);
+            expect(result[1] instanceof TemplateString).toBe(true);
+            expect(result[2] instanceof TemplateString).toBe(true);
+            expect(result).toEqual(source);
+        });
+
+        it('should convert strings in complex object into TemplateStrings', () => {
             const source = {
                 a: 'some words here',
                 b: [
@@ -35,20 +47,26 @@ describe('TemplateString', () => {
 
             expect(result instanceof TemplateString).toBe(false);
             expect(result.a instanceof TemplateString).toBe(true);
+
             expect(result.b instanceof TemplateString).toBe(false);
+            expect(Array.isArray(result.b)).toBe(true);
             expect(result.b[0] instanceof TemplateString).toBe(true);
             expect(result.b[1] instanceof TemplateString).toBe(true);
             expect(result.b[2] instanceof TemplateString).toBe(true);
             expect(result.b[3] instanceof TemplateString).toBe(false);
+
             expect(result.b[3].a instanceof TemplateString).toBe(true);
+
             expect(result.b[3].b instanceof TemplateString).toBe(false);
+            expect(Array.isArray(result.b[3].b)).toBe(true);
             expect(result.b[3].b[0] instanceof TemplateString).toBe(false);
             expect(result.b[3].b[1] instanceof TemplateString).toBe(true);
             expect(result.b[3].b[2] instanceof TemplateString).toBe(true);
             expect(result.b[3].b[3] instanceof TemplateString).toBe(false);
+
             expect(result.b[3].b[4] instanceof TemplateString).toBe(false);
             expect(result.b[3].b[4].a instanceof TemplateString).toBe(true);
-            expect(result.b[3].b[4].b instanceof TemplateString).toBe(false);
+            expect(result.b[3].b[4].b instanceof TemplateString).toBe(false);\
             expect(result).toEqual(source);
         });
     });
@@ -76,7 +94,7 @@ describe('TemplateString', () => {
     });
 
     describe('toPascalCase()', () => {
-        it('should properly translate strings into PascalCAse', () => {
+        it('should properly translate strings into PascalCase', () => {
             const source = 'some words here';
             const expected = 'SomeWordsHere';
             let str = new TemplateString(source);
