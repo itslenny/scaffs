@@ -14,7 +14,7 @@ describe('TemplateString', () => {
 
             expect(result instanceof TemplateString).toBe(true);
             expect(result).toEqual(source);
-        })
+        });
 
         it('should convert complex object into TemplateStrings', () => {
             const source = {
@@ -50,7 +50,7 @@ describe('TemplateString', () => {
             expect(result.b[3].b[4].a instanceof TemplateString).toBe(true);
             expect(result.b[3].b[4].b instanceof TemplateString).toBe(false);
             expect(result).toEqual(source);
-        })
+        });
     });
 
     describe('toCamelCase()', () => {
@@ -107,5 +107,4 @@ describe('TemplateString', () => {
             expect(result).toBe(expected);
         });
     });
-
-})
+});
