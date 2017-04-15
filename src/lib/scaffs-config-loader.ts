@@ -81,5 +81,4 @@ export module ScaffsConfigLoader {
             resolve({ scaffs, scaffsPaths, baseConfigPath, absoluteScaffPaths });
         });
     }
-
 }

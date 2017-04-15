@@ -34,8 +34,11 @@ export type ScaffoldVariable = string | ScaffoldVariableConfig;
  * Configuration for individual scaffold variables
  */
 export interface ScaffoldVariableConfig {
+    // name of a variable used in scaffold templates
     name: string;
+    // optional custom prompt for user when entering this variable
     prompt?: string;
+    // allows this variable to be left blank (will default to an empty string)
     optional?: boolean;
 }
 

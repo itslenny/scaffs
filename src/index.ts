@@ -13,7 +13,7 @@ import { ScaffoldConfig } from './contracts/scaffold';
 export module Scaffolder {
 
     /**
-     * Generates a scaffold from a provided template
+     * Generates files from a scaffold path
      *
      * @param scaffoldPath - path to the scaffold template
      * @param targetPath - path where the item should be generated
@@ -24,6 +24,14 @@ export module Scaffolder {
             .then(scaffold => ScaffoldTemplater.generateScaffold(scaffold, targetPath, options));
     }
 
+    /**
+     * Generates files using the scaffold specified (requires scaffs config)
+     *
+     * @param config - config for the project (contains scaffold search paths)
+     * @param scaffoldName - name of the scaffold to build
+     * @param targetPath - location where the generated files should be placed
+     * @param options - options for template generation
+     */
     export function scaffold(config: ScaffsConfig, scaffoldName: string, targetPath: string, options: TemplateOptions): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             const scaffoldPath = getScaffoldPath(config, scaffoldName);
@@ -37,6 +45,12 @@ export module Scaffolder {
         });
     }
 
+    /**
+     * Loads the configuration for a specified scaffold (requires scaffs config)
+     *
+     * @param config - config for the project (contains scaffold search paths)
+     * @param scaffoldName - name of the scaffold to build
+     */
     export function loadScaffoldConfig(config: ScaffsConfig, scaffoldName: string): Promise<ScaffoldConfig> {
         return new Promise((resolve, reject) => {
             const scaffoldPath = getScaffoldPath(config, scaffoldName);
@@ -50,6 +64,11 @@ export module Scaffolder {
         });
     }
 
+    /**
+     * Loads teh configuration for a scaffold path
+     *
+     * @param scaffoldPath - path to a scaffold template
+     */
     export function loadScaffoldConfigFromPath(scaffoldPath: string): Promise<ScaffoldConfig> {
         return ScaffoldLoader.loadScaffoldConfig(scaffoldPath);
     }
@@ -63,22 +82,3 @@ export module Scaffolder {
         return config.absoluteScaffPaths && config.absoluteScaffPaths[scaffoldName];
     }
 }
-
-// TEST LOAD CONFIG
-// let configBasePath = path.resolve(__dirname, '../test/data/projects/basic-test-project');
-// let configPath = path.resolve(configBasePath, '.scaffs-config.json');
-// Scaffolder.loadScaffsConfig(configPath)
-//     .then(config => console.log('config', config))
-//     .catch(e => console.log('config error', e));
-
-// TEST PROGRAMMATIC USAGE
-// let source = './test/data/scaffolds/Example';
-// let target = './test/output'
-// let options: TemplateOptions = {
-//     data: {
-//         name: 'my newer component name',
-//         stuff: [9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7],
-//     },
-// };
-
-// Scaffolder.scaffoldFromPath(source, target, options).then(() => console.log('DONE!!!'));
