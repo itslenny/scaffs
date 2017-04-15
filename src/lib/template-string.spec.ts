@@ -17,7 +17,7 @@ describe('TemplateString', () => {
         });
 
         it('should convert array of strings into array of TemplateStrings', () => {
-            const source = ['a', 'b', 'c',];
+            const source = ['a', 'b', 'c'];
 
             let result = TemplateString.convertToTemplateStrings(source);
 
@@ -66,7 +66,7 @@ describe('TemplateString', () => {
 
             expect(result.b[3].b[4] instanceof TemplateString).toBe(false);
             expect(result.b[3].b[4].a instanceof TemplateString).toBe(true);
-            expect(result.b[3].b[4].b instanceof TemplateString).toBe(false);\
+            expect(result.b[3].b[4].b instanceof TemplateString).toBe(false);
             expect(result).toEqual(source);
         });
     });
