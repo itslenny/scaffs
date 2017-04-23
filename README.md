@@ -102,5 +102,5 @@ docs comming...
 * Add more examples / animated gifs
 * Create scaff scaff
 * Create test-project scaff
-* Split scaffs-cli / scaffs (lib)
 * Refactor to Async/Await
+* Add option to customize indention
