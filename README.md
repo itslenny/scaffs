@@ -1,17 +1,16 @@
-# Scaffs
+# Scaffs (CLI)
 
 [![Npm Version](https://img.shields.io/npm/v/scaffs-cli.svg?style=flat)](https://www.npmjs.com/package/scaffs-cli)
 [![Npm Downloads](https://img.shields.io/npm/dm/scaffs-cli.svg?style=flat)](https://www.npmjs.com/package/scaffs-cli)
 [![Build Status](https://travis-ci.org/itslenny/scaffs.svg?branch=master)](https://travis-ci.org/itslenny/scaffs)
 [![Build status](https://ci.appveyor.com/api/projects/status/olwnfccy11bt7a0i?svg=true)](https://ci.appveyor.com/project/itslenny/scaffs)
 
-
-There will be more docs soon iPromise™
+This is the cli scaffs utility.
 
 ## Install
 
 ```
-npm i -g scaffs
+npm i -g scaffs-cli
 ```
 
 ## Command line usage
@@ -78,7 +77,9 @@ The scaffs config currently has to fields:
 
 ## Programmatic usage
 
-docs comming...
+The library version of scaffs is a sub package in this repo so it doesn't need to include any of the cli dependencies.
+
+[Learn More](https://www.npmjs.com/package/scaffs)
 
 ## Creating Scaffolds
 
