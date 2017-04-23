@@ -96,7 +96,7 @@ The library version of scaffs is a sub package in this repo so it doesn't need t
 
 ## TODO
 
-* Add list comment (list available scaffolds)
+* Add list command (list available scaffolds)
 * Add comments
 * Add more tests
 * Break up documentation into separate pages
@@ -105,3 +105,4 @@ The library version of scaffs is a sub package in this repo so it doesn't need t
 * Create test-project scaff
 * Refactor to Async/Await
 * Add option to customize indention
+* Add "flat" option that doesn't create the root directory
