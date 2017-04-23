@@ -21,7 +21,6 @@
             140
         ],
         "no-arg": true,
-        "no-boolean-literal-compare": true,
         "no-conditional-assignment": true,
         "no-consecutive-blank-lines": true,
         "no-construct": true,
@@ -30,12 +29,10 @@
 
         "no-empty": false,
         "no-eval": true,
-        "no-for-in-array": true,
         "no-irregular-whitespace": true,
         "no-string-literal": false,
         "no-trailing-whitespace": true,
         "no-unused-expression": true,
-        "no-use-before-declare": true,
         "no-var-keyword": true,
         "object-literal-key-quotes": [
             true,

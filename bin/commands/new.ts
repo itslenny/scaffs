@@ -92,16 +92,17 @@ function parseInputData(data: any): Object {
 }
 
 function getScaffoldVariables(config: ScaffoldConfig, data: TemplateOptionsData): TemplateOptionsData {
+    let variables = Scaffolder.getScaffoldVariables(config);
     let variablesResult: TemplateOptionsData = {};
-    let variables = config.variables;
+
     for (let i = 0, len = variables.length; i < len; i++) {
         let variable = variables[i];
-        let variableName = typeof variable === 'object' ? variable.name : variable;
-        let variableOptional = typeof variable === 'object' ? variable.optional : false;
+        let variableName = variable.name;
+        let variableOptional = variable.optional;
         if (data[variableName]) {
             variablesResult[variableName] = data[variableName];
         } else {
-            let variablePrompt = typeof variable === 'object' ? (variable.prompt || variableName) : variableName;
+            let variablePrompt = variable.prompt;
             variablesResult[variableName] = prompt(`${variablePrompt}: `);
         }
         if (!variableOptional && !variablesResult[variableName]) {

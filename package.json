@@ -1,16 +1,14 @@
 {
   "name": "scaffs-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A simple language agnostic scaffolder",
-  "typings": "./src/index.d.ts",
-  "main": "./src/index.js",
   "scripts": {
     "start": "tsc -w",
     "test": "node test/test-runner.js",
     "build": "tsc",
     "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\" && npm run clean:test-output",
     "clean:test-output": "rimraf test/output",
-    "lint": "tslint \"**/*.ts\" --type-check --project=tsconfig.json --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.* --exclude=test/output/**/*.*",
+    "lint": "tslint \"**/*.ts\" --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.* --exclude=test/output/**/*.*",
     "tslint": "tslint"
   },
   "repository": {

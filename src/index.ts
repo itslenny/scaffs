@@ -8,7 +8,11 @@ import { ScaffoldTemplater } from './lib/scaffold-templater';
 import { ScaffsConfigLoader } from './lib/scaffs-config-loader';
 import { TemplateOptions } from './contracts/template-options';
 import { ScaffsConfig } from './contracts/scaffs-config';
-import { ScaffoldConfig } from './contracts/scaffold';
+import { ScaffoldConfig, ScaffoldVariableConfig } from './contracts/scaffold';
+
+export * from './contracts/scaffold';
+export * from './contracts/scaffs-config';
+export * from './contracts/template-options';
 
 export module Scaffolder {
 
@@ -76,6 +80,14 @@ export module Scaffolder {
     export function loadScaffsConfig(configPath: string): Promise<ScaffsConfig> {
         return ScaffsConfigLoader.loadConfig(configPath)
             .then(ScaffsConfigLoader.resolveScaffolds);
+    }
+
+    export function getScaffoldVariables(scaffoldConfig: ScaffoldConfig): ScaffoldVariableConfig[] {
+        return ScaffoldLoader.getScaffoldVariables(scaffoldConfig);
+    }
+
+    export function getScaffoldVariablesFromPath(scaffoldPath: string): Promise<ScaffoldVariableConfig[]> {
+        return ScaffoldLoader.getScaffoldVariablesFromPath(scaffoldPath);
     }
 
     export function getScaffoldPath(config: ScaffsConfig, scaffoldName: string): string {

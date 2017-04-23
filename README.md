@@ -95,6 +95,7 @@ docs comming...
 
 ## TODO
 
+* Add list comment (list available scaffolds)
 * Add comments
 * Add more tests
 * Break up documentation into separate pages
@@ -102,3 +103,4 @@ docs comming...
 * Create scaff scaff
 * Create test-project scaff
 * Split scaffs-cli / scaffs (lib)
+* Refactor to Async/Await

@@ -23,7 +23,7 @@ export module ScaffsConfigLoader {
             try {
                 let config = fs.readJsonSync(path.join(projectRoot, SCAFFS_CONFIG_FILE));
                 if (!config.baseConfigPath) {
-                    config.baseConfigPath = path.dirname(projectRoot);
+                    config.baseConfigPath = projectRoot;
                 }
                 resolve(config);
 

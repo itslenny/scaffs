@@ -7,7 +7,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { FileUtils } from './file-utils';
-import { Scaffold, FileDataNode, FileDataNodeType, ScaffoldConfig } from '../contracts/scaffold';
+import { Scaffold, FileDataNode, FileDataNodeType, ScaffoldConfig, ScaffoldVariableConfig } from '../contracts/scaffold';
 
 const SCAFFOLD_CONFIG_FILE = '.scaffold.json';
 
@@ -52,6 +52,27 @@ export module ScaffoldLoader {
         });
     }
 
+    /**
+     * Gets the list of scaffold variables from the specified path
+     *
+     * @param scaffoldPath - path to scaffold to load
+     */
+    export function getScaffoldVariablesFromPath(scaffoldPath: string): Promise<ScaffoldVariableConfig[]> {
+        return loadScaffoldConfig(scaffoldPath).then(scaffoldConfig => getScaffoldVariables(scaffoldConfig));
+    }
+
+    /**
+     * Gets the list of scaffold variables from the specified path
+     *
+     * @param scaffoldPath - path to scaffold to load
+     */
+    export function getScaffoldVariables(scaffoldConfig: ScaffoldConfig): ScaffoldVariableConfig[] {
+        return scaffoldConfig.variables.map(variable => ({
+            name: typeof variable === 'object' ? variable.name : variable,
+            prompt: typeof variable === 'object' ? (variable.prompt || variable.name) : variable,
+            optional: typeof variable === 'object' ? !!variable.optional : false,
+        }));
+    }
 }
 
 /**

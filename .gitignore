@@ -2,6 +2,7 @@
 **/*.js
 **/*.js.map
 test/output
+test/data/projects/**/tmp
 node_modules
 **/.DS_Store
 **/*.log
