@@ -2,7 +2,7 @@
   "name": "scaffs",
   "version": "0.0.2",
   "description": "A simple language agnostic scaffolder",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "start": "tsc -w",
     "test": "node test/test-runner.js",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "fs-extra": "^2.1.2",
-    "jasmine-node": "^1.14.5",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "prompt-sync": "^4.1.4"
@@ -41,6 +40,7 @@
     "@types/node": "^7.0.12",
     "@types/prompt-sync": "^4.1.0",
     "jasmine": "^2.5.3",
+    "jasmine-node": "^1.14.5",
     "rimraf": "^2.6.1",
     "tslint": "^5.0.0",
     "tslint-eslint-rules": "^4.0.0",
