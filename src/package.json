@@ -1,6 +1,6 @@
 {
   "name": "scaffs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple language agnostic scaffolder",
   "typings": "./index.d.ts",
   "main": "./index.js",
