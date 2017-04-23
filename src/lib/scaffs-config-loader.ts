@@ -59,7 +59,7 @@ export module ScaffsConfigLoader {
                 const scaffoldPackagePath = path.resolve(baseConfigPath, scaffsPaths[i]);
                 const scaffolds = fs.readdirSync(scaffoldPackagePath);
 
-                for (let j = 0, len = scaffolds.length; i < len; i++) {
+                for (let j = 0, len = scaffolds.length; j < len; j++) {
                     const scaffoldPath = scaffolds[j];
 
                     if (scaffoldPath.startsWith('.')) {

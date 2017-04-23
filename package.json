@@ -1,6 +1,6 @@
 {
   "name": "scaffs-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",
