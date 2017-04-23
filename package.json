@@ -1,5 +1,5 @@
 {
-  "name": "scaffs",
+  "name": "scaffs-cli",
   "version": "0.0.2",
   "description": "A simple language agnostic scaffolder",
   "main": "./src/index.js",
