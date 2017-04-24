@@ -18,4 +18,7 @@ export interface TemplateOptions {
 
     // header to be prepended to templates
     header?: string;
+
+    // change the scaffs default intention to the provided characters
+    indention?: string;
 }

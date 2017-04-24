@@ -2,9 +2,7 @@
     "files.exclude": {
         "**/.git": true,
         "**/.DS_Store": true,
-        "**/*.d.ts": {
-            "when": "$(basename).ts"
-        },
+
         "**/*.js": {
             "when": "$(basename).ts"
         },

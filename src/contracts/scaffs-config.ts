@@ -18,4 +18,7 @@ export interface ScaffsConfig {
 
     // header text to prepend to all generated files
     header?: string;
+
+    // change the scaffs default intention to the provided characters
+    indention?: string;
 }

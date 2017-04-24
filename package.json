@@ -1,6 +1,6 @@
 {
   "name": "scaffs-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",
@@ -25,6 +25,7 @@
     "node": ">=5.0.0"
   },
   "dependencies": {
+    "detect-indent": "^5.0.0",
     "fs-extra": "^2.1.2",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
