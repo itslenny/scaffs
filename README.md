@@ -106,3 +106,4 @@ The library version of scaffs is a sub package in this repo so it doesn't need t
 * Refactor to Async/Await
 * Add option to customize indention
 * Add "flat" option that doesn't create the root directory
+* Auto load scaffs in node_modules/@scaffs if available

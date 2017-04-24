@@ -15,4 +15,7 @@ export interface TemplateOptionsData {
  */
 export interface TemplateOptions {
     data: TemplateOptionsData;
+
+    // header to be prepended to templates
+    header?: string;
 }

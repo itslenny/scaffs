@@ -40,6 +40,8 @@ export module Scaffolder {
         return new Promise<void>((resolve, reject) => {
             const scaffoldPath = getScaffoldPath(config, scaffoldName);
 
+            options.header = config.header || '';
+
             if (!scaffoldPath) {
                 reject('Unable to find scaffold. Make sure it\'s defined in your .scaffs-config.json');
                 return;

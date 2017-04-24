@@ -38,9 +38,10 @@ export module ScaffsConfigLoader {
      *
      * @param param0 - a scaffs config object
      */
-    export function resolveScaffolds({ scaffs, scaffsPaths, baseConfigPath }: ScaffsConfig): Promise<ScaffsConfig> {
+    export function resolveScaffolds(scaffsConfig: ScaffsConfig): Promise<ScaffsConfig> {
         return new Promise((resolve, reject) => {
             let absoluteScaffPaths: { [key: string]: string } = {};
+            const { scaffs, baseConfigPath, scaffsPaths } = scaffsConfig;
 
             for (let key in scaffs) {
                 if (scaffs.hasOwnProperty(key)) {
@@ -78,7 +79,9 @@ export module ScaffsConfigLoader {
                 }
             }
 
-            resolve({ scaffs, scaffsPaths, baseConfigPath, absoluteScaffPaths });
+            scaffsConfig.absoluteScaffPaths = absoluteScaffPaths;
+
+            resolve(scaffsConfig);
         });
     }
 }

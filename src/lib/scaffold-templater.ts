@@ -65,7 +65,8 @@ export module ScaffoldTemplater {
                 }
             } else {
                 let templateContent = fs.readFileSync(node.fullPath).toString();
-                fs.writeFileSync(targetFullPath, _.template(templateContent)(data));
+                let outputContent = (options.header || '') + _.template(templateContent)(data);
+                fs.writeFileSync(targetFullPath, outputContent);
             }
         }
     }

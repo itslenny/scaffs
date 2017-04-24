@@ -10,9 +10,12 @@ export interface ScaffsConfig {
     scaffsPaths: string[];
     scaffs: {[key: string]: string};
 
-    //used to load scaffolds by name (can be populated with)
+    // used to load scaffolds by name (can be populated with)
     absoluteScaffPaths: {[key: string]: string};
 
-    //used to resolve absolute paths
+    // used to resolve absolute paths
     baseConfigPath: string;
+
+    // header text to prepend to all generated files
+    header?: string;
 }
