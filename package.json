@@ -1,12 +1,12 @@
 {
-  "name": "scaffs-cli",
-  "version": "0.2.0",
+  "name": "scaffs",
+  "version": "0.3.0",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",
-    "test": "node test/test-runner.js",
+    "test": "ts-node --project tsconfig.test.json test/test-runner.ts",
     "build": "tsc",
-    "clean": "rimraf \"@(bin|src|test)/**/@(*.js|*.d.ts|*.js.map)\" && npm run clean:test-output",
+    "clean": "rimraf dist && npm run clean:test-output",
     "clean:test-output": "rimraf test/output",
     "lint": "tslint \"**/*.ts\" --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.* --exclude=test/output/**/*.*",
     "tslint": "tslint"
@@ -15,9 +15,8 @@
     "type": "git",
     "url": "https://github.com/itslenny/scaffs.git"
   },
-  "bin": {
-    "scaffs": "./bin/index.js"
-  },
+  "typings": "./dist/index.d.ts",
+  "main": "./dist/index.js",
   "author": "Lenny Urbanowski",
   "license": "MIT",
   "engineStrict": true,
@@ -25,23 +24,20 @@
     "node": ">=5.0.0"
   },
   "dependencies": {
-    "detect-indent": "^5.0.0",
     "fs-extra": "^2.1.2",
     "lodash": "^4.17.4",
-    "minimist": "^1.2.0",
-    "prompt-sync": "^4.1.4"
+    "detect-indent": "^5.0.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^2.0.0",
     "@types/jasmine": "^2.5.47",
     "@types/jasmine-node": "^1.14.31",
     "@types/lodash": "^4.14.61",
-    "@types/minimist": "^1.2.0",
     "@types/node": "^7.0.12",
-    "@types/prompt-sync": "^4.1.0",
     "jasmine": "^2.5.3",
     "jasmine-node": "^1.14.5",
     "rimraf": "^2.6.1",
+    "ts-node": "^3.0.2",
     "tslint": "^5.0.0",
     "tslint-eslint-rules": "^4.0.0",
     "typescript": "^2.2.2"

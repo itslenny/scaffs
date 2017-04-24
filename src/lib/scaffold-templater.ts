@@ -68,9 +68,11 @@ export module ScaffoldTemplater {
                 let templateContent = fs.readFileSync(node.fullPath).toString();
                 let outputContent = (options.header || '') + _.template(templateContent)(data);
 
-                if (options.indention) {
+                if (options.indention && options.indention.length) {
                     const { indent } = detectIndent(outputContent);
-                    outputContent = outputContent.replace(new RegExp(indent, 'g'), options.indention);
+                    if (indent && indent.length) {
+                        outputContent = outputContent.replace(new RegExp(indent, 'g'), options.indention);
+                    }
                 }
 
                 fs.writeFileSync(targetFullPath, outputContent);

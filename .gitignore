@@ -1,4 +1,4 @@
-**/*.d.ts
+dist
 **/*.js
 **/*.js.map
 test/output

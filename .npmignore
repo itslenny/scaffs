@@ -1,9 +1,12 @@
+.DS_Store
+.vscode
 **/*.ts
 !**/*.d.ts
 **/*.yml
-.vscode
-.DS_Store
+**/*.log
+**/*.log.*
 node_modules
 test
 tsconfig.json
 tslint.json
+src
