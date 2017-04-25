@@ -20,7 +20,7 @@ export module ScaffoldLoader {
      */
     export function loadScaffold(baseFilePath: string): Promise<Scaffold> {
         return new Promise<Scaffold>((resolve, reject) => {
-            if (!FileUtils.existsSync(baseFilePath)) {
+            if (!FileUtils.directoryExistsSync(baseFilePath)) {
                 reject('The specified scaffold does not exist.');
                 return;
             }

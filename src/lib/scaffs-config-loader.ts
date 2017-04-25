@@ -47,8 +47,13 @@ export module ScaffsConfigLoader {
                 if (scaffs.hasOwnProperty(key)) {
                     const absoluteScaffoldPath = path.resolve(baseConfigPath, scaffs[key]);
 
-                    if (!FileUtils.existsSync(absoluteScaffoldPath)) {
-                        reject(`Scaffold not found - ${absoluteScaffoldPath}`);
+                    // only directories are scaffs
+                    if (!FileUtils.directoryExistsSync(absoluteScaffoldPath)) {
+                        if(FileUtils.existsSync(absoluteScaffoldPath)) {
+                            reject(`Scaffold ${absoluteScaffoldPath} is not a directory.`);
+                        } else {
+                            reject(`Scaffold not found - ${absoluteScaffoldPath}`);
+                        }
                         return;
                     }
 
@@ -70,9 +75,9 @@ export module ScaffsConfigLoader {
                     const absoluteScaffoldPath = path.resolve(scaffoldPackagePath, scaffoldPath);
                     const scaffoldName = path.basename(scaffoldPath);
 
-                    if (!FileUtils.existsSync(absoluteScaffoldPath)) {
-                        reject(`Scaffold not found - ${absoluteScaffoldPath}`);
-                        return;
+                    // only directories are scaffs
+                    if (!FileUtils.directoryExistsSync(absoluteScaffoldPath)) {
+                        continue;
                     }
 
                     absoluteScaffPaths[scaffoldName] = absoluteScaffoldPath;

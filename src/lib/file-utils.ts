@@ -20,4 +20,13 @@ export module FileUtils {
         }
         return true;
     }
+
+    export function directoryExistsSync(path: string): boolean {
+        try {
+            let stats = fs.statSync(path);
+            return stats && stats.isDirectory();
+        } catch (e) {
+            return false;
+        }
+    }
 }
