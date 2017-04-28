@@ -49,7 +49,7 @@ export module ScaffsConfigLoader {
 
                     // only directories are scaffs
                     if (!FileUtils.directoryExistsSync(absoluteScaffoldPath)) {
-                        if(FileUtils.existsSync(absoluteScaffoldPath)) {
+                        if (FileUtils.existsSync(absoluteScaffoldPath)) {
                             reject(`Scaffold ${absoluteScaffoldPath} is not a directory.`);
                         } else {
                             reject(`Scaffold not found - ${absoluteScaffoldPath}`);
