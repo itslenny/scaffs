@@ -1,4 +1,4 @@
-# ![](docs/images/Logo_64.png)caffs
+# ![Scaffs](docs/images/Logo_64.png)caffs
 
 [![Npm Version](https://img.shields.io/npm/v/scaffs.svg?style=flat)](https://www.npmjs.com/package/scaffs)
 [![Npm Downloads](https://img.shields.io/npm/dm/scaffs.svg?style=flat)](https://www.npmjs.com/package/scaffs)
