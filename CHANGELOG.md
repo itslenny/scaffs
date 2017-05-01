@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.4.0
+
+* Automatic discovery of registry scaffs (@scaffs)
+* Made .scaffs-config.json optional
+* Added markdown server for docs when developing
+
 ## 0.3.x
 
 * 0.3.2

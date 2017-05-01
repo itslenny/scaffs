@@ -1,6 +1,6 @@
 {
   "name": "scaffs",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",
@@ -10,7 +10,8 @@
     "clean:test-output": "rimraf test/output",
     "lint": "tslint \"**/*.ts\" --exclude=node_modules --exclude=**/*.d.ts --exclude=test/data/**/*.* --exclude=test/output/**/*.*",
     "tslint": "tslint",
-    "prepublish": "npm test && npm run clean && npm run build"
+    "prepublish": "npm test && npm run clean && npm run build",
+    "docs": "cd docs && gfms -n -p 888"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,14 @@
     "@types/jasmine-node": "^1.14.31",
     "@types/lodash": "^4.14.61",
     "@types/node": "^7.0.12",
+    "gfms": "0.0.12",
     "jasmine": "^2.5.3",
     "jasmine-node": "^1.14.5",
     "rimraf": "^2.6.1",
     "ts-node": "^3.0.2",
     "tslint": "^5.0.0",
     "tslint-eslint-rules": "^4.0.0",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "ws-rpc": "0.0.6"
   }
 }
