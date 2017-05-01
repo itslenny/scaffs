@@ -19,6 +19,12 @@
             "children": []
         },
         {
+            "file": "__name.toKebabCase()__.empty.scss",
+            "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffs/test/data/scaffolds/Example/__name.toKebabCase()__.empty.scss",
+            "type": 0,
+            "children": []
+        },
+        {
             "file": "__name.toKebabCase()__.example.service",
             "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffs/test/data/scaffolds/Example/__name.toKebabCase()__.example.service",
             "type": 1,
@@ -36,6 +42,18 @@
                     "children": []
                 }
             ]
+        },
+        {
+            "file": "__name.toKebabCase()__.html",
+            "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffs/test/data/scaffolds/Example/__name.toKebabCase()__.html",
+            "type": 0,
+            "children": []
+        },
+        {
+            "file": "__name.toKebabCase()__.stuff.scss",
+            "fullPath": "/Users/lenny/Stuff/projects/Coding/mine/other/scaffolder/scaffs/test/data/scaffolds/Example/__name.toKebabCase()__.stuff.scss",
+            "type": 0,
+            "children": []
         },
         {
             "file": "__name__.example.spec.ts",

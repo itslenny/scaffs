@@ -41,7 +41,7 @@ export module Scaffolder {
             const scaffoldPath = getScaffoldPath(config, scaffoldName);
 
             // transfer some variables directly to options
-            options.header = config.header || '';
+            options.headers = config.headers || {};
             options.indention = config.indention;
 
             if (!scaffoldPath) {

@@ -17,7 +17,9 @@ export interface TemplateOptions {
     data: TemplateOptionsData;
 
     // header to be prepended to templates
-    header?: string;
+    headers?: {
+        [glob: string]: string;
+    };
 
     // change the scaffs default intention to the provided characters
     indention?: string;

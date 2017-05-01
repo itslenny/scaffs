@@ -7,6 +7,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as _ from 'lodash';
 import * as detectIndent from 'detect-indent';
+import * as minimatch from 'minimatch';
 
 import { FileDataNode, FileDataNodeType, Scaffold } from '../contracts/scaffold';
 import { TemplateString } from './template-string';
@@ -66,13 +67,26 @@ export module ScaffoldTemplater {
                 }
             } else {
                 let templateContent = fs.readFileSync(node.fullPath).toString();
-                let outputContent = (options.header || '') + _.template(templateContent)(data);
+                let outputContent = _.template(templateContent)(data);
 
+                // update indention
                 if (options.indention && options.indention.length) {
                     const { indent } = detectIndent(outputContent);
                     if (indent && indent.length) {
                         outputContent = outputContent.replace(new RegExp(indent, 'g'), options.indention);
                     }
+                }
+
+                // add file headers
+                let headers = options.headers;
+                let header = '';
+                if (headers) {
+                    for (let glob in headers) {
+                        if (headers.hasOwnProperty(glob) && minimatch(node.file, glob)) {
+                            header = headers[glob];
+                        }
+                    }
+                    outputContent = header + outputContent;
                 }
 
                 fs.writeFileSync(targetFullPath, outputContent);
