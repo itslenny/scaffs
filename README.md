@@ -1,4 +1,4 @@
-# ![Scaffs](docs/images/Logo_64.png)caffs
+# ![Scaffs](https://raw.githubusercontent.com/itslenny/scaffs/master/docs/images/Logo_Full_64.png)
 
 [![Npm Version](https://img.shields.io/npm/v/scaffs.svg?style=flat)](https://www.npmjs.com/package/scaffs)
 [![Npm Downloads](https://img.shields.io/npm/dm/scaffs.svg?style=flat)](https://www.npmjs.com/package/scaffs)
@@ -35,16 +35,18 @@ Docs coming soon...
 * [Contributing to Scaffs](CONTRIBUTING.md)
 * Contributing a Scaff
 
+## See also
+
+* [scaffs cli](https://github.com/itslenny/scaffs-cli)
+* [scaffs vscode plugin](https://github.com/itslenny/scaffs-vscode)
+* [@scaffs registry](https://github.com/itslenny/scaffs-registry)
+
 ## TODO
 
-* Add list command (list available scaffolds)
 * Add comments
 * Add more tests
 * Break up documentation into separate pages
-* Add more examples / animated gifs
 * Create scaff scaff
 * Create test-project scaff
 * Refactor to Async/Await
-* Add option to customize indention
 * Add "flat" option that doesn't create the root directory
-* Auto load scaffs in node_modules/@scaffs if available
