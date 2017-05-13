@@ -99,7 +99,7 @@ The file names also support the entire [templating api](#templating-api).
 
 ## Templating API
 
-Inside of the template files scaffs is powered by [lodash.template]() which uses `<% %>` as delimiters. If you want to insert a value use an equal like this: `<%= value %>` 
+Inside of the template files scaffs is powered by [lodash.template](https://lodash.com/docs/4.17.4#template) which uses `<% %>` as delimiters. If you want to insert a value use an equal like this: `<%= value %>` 
 
 All variables specified in the `.scaffold.json` ([explained above](Template variables)) are available in the template.
 
@@ -186,7 +186,7 @@ ___.uniq(numbers).join('-')__.component.ts
 
 * [Scaffs library / programmatic usage](https://github.com/itslenny/scaffs) | [npm](https://www.npmjs.com/package/scaffs)
 * [Scaffs cli / command line usage](https://github.com/itslenny/scaffs-cli) | [npm](https://www.npmjs.com/package/scaffs-cli)
-* [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [vs code install]
+* [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [vs code marketplace](https://marketplace.visualstudio.com/items?itemName=itslennysfault.scaffs-vscode)
 * [@scaffs registry](https://github.com/itslenny/scaffs-registry) | [npm](https://www.npmjs.com/~scaffs)
 * [Using scaffs config](https://github.com/itslenny/scaffs/tree/master/docs/config.md)
 * [Creating scaffs](https://github.com/itslenny/scaffs/tree/master/docs/create.md)
