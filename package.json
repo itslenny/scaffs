@@ -1,6 +1,6 @@
 {
   "name": "scaffs",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",

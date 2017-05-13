@@ -181,7 +181,6 @@ ___.uniq(numbers).join('-')__.component.ts
 
 > Note the triple underscore (`___`) at the start. This is because lodash is accessed via `_` inside of the standard file name delimiters `__ ... __` resulting in the starting triple underscore.
 
-
 ## Additional resources
 
 * [Scaffs library / programmatic usage](https://github.com/itslenny/scaffs) | [npm](https://www.npmjs.com/package/scaffs)
