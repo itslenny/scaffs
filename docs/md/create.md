@@ -188,5 +188,5 @@ ___.uniq(numbers).join('-')__.component.ts
 * [Scaffs cli / command line usage](https://github.com/itslenny/scaffs-cli) | [npm](https://www.npmjs.com/package/scaffs-cli)
 * [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [vs code marketplace](https://marketplace.visualstudio.com/items?itemName=itslennysfault.scaffs-vscode)
 * [@scaffs registry](https://github.com/itslenny/scaffs-registry) | [npm](https://www.npmjs.com/~scaffs)
-* [Using scaffs config](https://github.com/itslenny/scaffs/tree/master/docs/config.md)
-* [Creating scaffs](https://github.com/itslenny/scaffs/tree/master/docs/create.md)
+* [Using scaffs config](https://github.com/itslenny/scaffs/tree/master/md/docs/config.md)
+* [Creating scaffs](https://github.com/itslenny/scaffs/tree/master/md/docs/create.md)
