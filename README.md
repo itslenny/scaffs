@@ -18,34 +18,27 @@ npm i --save scaffs
 
 ## Programmatic usage
 
-Docs coming soon...
+> Details coming soon
 
-[Learn More](https://www.npmjs.com/package/scaffs)
+## Additional resources
 
-## Creating Scaffolds
-
-...yeah, this will come at some point.
-
-## Plugins
-
-* soon!
+* [Scaffs library / programmatic usage](https://github.com/itslenny/scaffs) | [npm](https://www.npmjs.com/package/scaffs)
+* [Scaffs cli / command line usage](https://github.com/itslenny/scaffs-cli) | [npm](https://www.npmjs.com/package/scaffs-cli)
+* [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [vs code install]
+* [@scaffs registry](https://github.com/itslenny/scaffs-registry) | [npm](https://www.npmjs.com/~scaffs)
+* [Using scaffs config](https://github.com/itslenny/scaffs/tree/master/docs/config.md)
+* [Creating scaffs](https://github.com/itslenny/scaffs/tree/master/docs/create.md)
 
 ## Contributing
 
 * [Contributing to Scaffs](CONTRIBUTING.md)
 * Contributing a Scaff
 
-## See also
-
-* [scaffs cli](https://github.com/itslenny/scaffs-cli)
-* [scaffs vscode plugin](https://github.com/itslenny/scaffs-vscode)
-* [@scaffs registry](https://github.com/itslenny/scaffs-registry)
-
 ## TODO
 
 * Add comments
 * Add more tests
-* Break up documentation into separate pages
+* Programmatic usage documentation
 * Create scaff scaff
 * Create test-project scaff
 * Refactor to Async/Await
