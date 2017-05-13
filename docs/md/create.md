@@ -110,7 +110,7 @@ The strings in the lodash are just like any other javascript string so you can u
 Additionally, scaffs extends the string prototype to include these useful utilities:
 
 | method | usage | example input | example output |
-|---|---|---|
+| --- | --- | --- | --- |
 | toCamelCase | variable.toCamelCase() | some value here | someValueHere |
 | toProperCase | variable.toProperCase() | some value here | SomeValueHere |
 | toPascalCase | variable.toPascalCase() | some value here | SomeValueHere |
