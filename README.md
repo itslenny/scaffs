@@ -24,7 +24,7 @@ npm i --save scaffs
 
 * [Scaffs library / programmatic usage](https://github.com/itslenny/scaffs) | [npm](https://www.npmjs.com/package/scaffs)
 * [Scaffs cli / command line usage](https://github.com/itslenny/scaffs-cli) | [npm](https://www.npmjs.com/package/scaffs-cli)
-* [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [[vs code marketplace](https://marketplace.visualstudio.com/items?itemName=itslennysfault.scaffs-vscode)
+* [Scaffs vs code plugin](https://github.com/itslenny/scaffs-vscode) | [vs code marketplace](https://marketplace.visualstudio.com/items?itemName=itslennysfault.scaffs-vscode)
 * [@scaffs registry](https://github.com/itslenny/scaffs-registry) | [npm](https://www.npmjs.com/~scaffs)
 * [Using scaffs config](https://github.com/itslenny/scaffs/tree/master/docs/config.md)
 * [Creating scaffs](https://github.com/itslenny/scaffs/tree/master/docs/create.md)
