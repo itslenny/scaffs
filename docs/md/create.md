@@ -111,11 +111,11 @@ Additionally, scaffs extends the string prototype to include these useful utilit
 
 | method | usage | example input | example output |
 |---|---|---|
-toCamelCase | variable.toCamelCase() | some value here | someValueHere |
-toProperCase | variable.toProperCase() | some value here | SomeValueHere |
-toPascalCase | variable.toPascalCase() | some value here | SomeValueHere |
-toKebabCase | variable.toKebabCase() | some value here | some-value-here |
-toSnakeCase | variable.toSnakeCase() | some value here | some\_value\_here |
+| toCamelCase | variable.toCamelCase() | some value here | someValueHere |
+| toProperCase | variable.toProperCase() | some value here | SomeValueHere |
+| toPascalCase | variable.toPascalCase() | some value here | SomeValueHere |
+| toKebabCase | variable.toKebabCase() | some value here | some\-value\-here |
+| toSnakeCase | variable.toSnakeCase() | some value here | some\_value\_here |
 
 ### Objects
 
