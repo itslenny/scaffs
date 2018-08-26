@@ -10,7 +10,7 @@ import { ScaffoldLoader } from './scaffold-loader';
 
 describe('ScaffoldLoader', () => {
 
-    describe('loadScaffold()', () => {
+    xdescribe('loadScaffold()', () => {
         it('should check for valid file path', done => {
             const badPath = path.resolve(__dirname, 'a/path/that/should/never/exist');
             ScaffoldLoader.loadScaffold(badPath)

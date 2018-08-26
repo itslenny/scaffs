@@ -69,6 +69,7 @@ export module ScaffoldLoader {
             try {
                 const codePath = path.join(scaffoldPath, SCAFFOLD_CODE_FILE);
                 if (FileUtils.existsSync(codePath)) {
+                    FileUtils.purgeCache(codePath);
                     resolve(require(codePath));
                 }
                 else {

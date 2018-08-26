@@ -29,4 +29,60 @@ export module FileUtils {
             return false;
         }
     }
+
+    export function getGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    /**
+     * Removes a module from the cache
+     */
+    export function purgeCache(moduleName: string) {
+        // Traverse the cache looking for the files
+        // loaded by the specified module name
+        searchCache(moduleName, function (mod: any) {
+            delete require.cache[mod.id];
+        });
+
+        // Remove cached paths to the module.
+        // Thanks to @bentael for pointing this out.
+        Object.keys((module.constructor as any)._pathCache).forEach(function (cacheKey) {
+            if (cacheKey.indexOf(moduleName) > 0) {
+                delete (module.constructor as any)._pathCache[cacheKey];
+            }
+        });
+    }
+
+    /**
+     * Traverses the cache to search for all the cached
+     * files of the specified module name
+     */
+    export function searchCache(moduleName: string, callback: any) {
+        // Resolve the module identified by the specified name
+        let mod = require.resolve(moduleName);
+
+        // Check if the module has been resolved and found within
+        // the cache
+        if (mod) {
+            mod = require.cache[mod];
+            if (mod !== undefined) {
+                // Recursively go over the results
+                (function traverse(mod) {
+                    // Go over each of the module's children and
+                    // traverse them
+                    (mod as any).children.forEach(function (child: any) {
+                        traverse(child);
+                    });
+
+                    // Call the specified callback providing the
+                    // found cached module
+                    callback(mod);
+                }(mod));
+            }
+        }
+    }
 }
