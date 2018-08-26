@@ -7,9 +7,10 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { FileUtils } from './file-utils';
-import { Scaffold, FileDataNode, FileDataNodeType, ScaffoldConfig, ScaffoldVariableConfig } from '../contracts/scaffold';
+import { Scaffold, FileDataNode, FileDataNodeType, ScaffoldConfig, ScaffoldVariableConfig, ScaffoldCode } from '../contracts/scaffold';
 
 const SCAFFOLD_CONFIG_FILE = '.scaffold.json';
+const SCAFFOLD_CODE_FILE = '.scaffold.code.js';
 
 export module ScaffoldLoader {
 
@@ -25,14 +26,20 @@ export module ScaffoldLoader {
                 return;
             }
 
-            resolve(
-                loadScaffoldConfig(baseFilePath)
-                    .then(scaffoldConfig => ({
-                        name: path.basename(baseFilePath),
-                        config: scaffoldConfig,
-                        files: parseScaffoldFiles(baseFilePath),
-                    })),
-            );
+            loadScaffoldConfig(baseFilePath)
+                .then(scaffoldConfig => {
+                    loadScaffoldCode(baseFilePath).then((scaffoldCode) => {
+                        const scaffold: Scaffold = {
+                            name: path.basename(baseFilePath),
+                            config: scaffoldConfig,
+                            files: parseScaffoldFiles(baseFilePath),
+                        };
+                        if (scaffoldCode) {
+                            scaffold.code = scaffoldCode;
+                        }
+                        resolve(scaffold);
+                    });
+                });
         });
     }
 
@@ -46,6 +53,27 @@ export module ScaffoldLoader {
             try {
                 const configPath = path.join(scaffoldPath, SCAFFOLD_CONFIG_FILE);
                 resolve(fs.readJsonSync(configPath));
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
+
+    /**
+     * loads the .scaffold.code.js from the scaffold by name
+     *
+     * @param filePath - base path of the scaffold
+     */
+    export function loadScaffoldCode(scaffoldPath: string): Promise<ScaffoldCode | null> {
+        return new Promise((resolve, reject) => {
+            try {
+                const codePath = path.join(scaffoldPath, SCAFFOLD_CODE_FILE);
+                if (FileUtils.existsSync(codePath)) {
+                    resolve(require(codePath));
+                }
+                else {
+                    resolve(null);
+                }
             } catch (e) {
                 reject(e);
             }

@@ -28,6 +28,13 @@ export interface ScaffoldConfig {
     variables: ScaffoldVariable[];
 }
 
+/**
+ * Code for a scaffold (.scaffold.code.js)
+ */
+export abstract class ScaffoldCode {
+    abstract async onComplete(scaffold: Scaffold): Promise<boolean>;
+}
+
 export type ScaffoldVariable = string | ScaffoldVariableConfig;
 
 /**
@@ -49,4 +56,5 @@ export interface Scaffold {
     name: string;
     config: ScaffoldConfig;
     files: FileDataNode[];
+    code?: ScaffoldCode;
 }

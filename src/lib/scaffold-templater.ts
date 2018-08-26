@@ -37,6 +37,10 @@ export module ScaffoldTemplater {
                 fs.ensureDirSync(targetPath);
 
                 scaffoldFileNode(scaffold.files, targetPath, options);
+
+                if (scaffold.code && scaffold.code.onComplete) {
+                    scaffold.code.onComplete(scaffold);
+                }
                 resolve();
             } catch (e) {
                 reject(e);

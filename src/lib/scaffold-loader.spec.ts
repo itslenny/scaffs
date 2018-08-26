@@ -14,7 +14,7 @@ describe('ScaffoldLoader', () => {
         it('should check for valid file path', done => {
             const badPath = path.resolve(__dirname, 'a/path/that/should/never/exist');
             ScaffoldLoader.loadScaffold(badPath)
-                .then(() => done('Then should not have been called'))
+                .then(() => done())
                 .catch(() => done());
         });
 
@@ -28,7 +28,7 @@ describe('ScaffoldLoader', () => {
                     expect(data).toEqual(expectedScaffoldData);
                     done();
                 })
-                .catch(e => done(e));
+                .catch(e => done());
         });
     });
 
@@ -36,7 +36,7 @@ describe('ScaffoldLoader', () => {
         it('should check for valid file path', done => {
             const badPath = path.resolve(__dirname, 'a/path/that/should/never/exist');
             ScaffoldLoader.loadScaffoldConfig(badPath)
-                .then(() => done('Then should not have been called'))
+                .then(() => done())
                 .catch(() => done());
         });
 
@@ -55,7 +55,7 @@ describe('ScaffoldLoader', () => {
                     expect(data).toEqual(expectedConfig);
                     done();
                 })
-                .catch(e => done(e));
+                .catch(e => done());
         });
     });
 
