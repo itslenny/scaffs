@@ -1,3 +1,4 @@
+import { TemplateOptions } from './template-options';
 /**
  * Copyright (C) Lenny Urbanowski 2017.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
@@ -32,8 +33,8 @@ export interface ScaffoldConfig {
  * Code for a scaffold (.scaffold.code.js)
  */
 export abstract class ScaffoldCode {
-    abstract async onStart(scaffold: Scaffold, targetPath: string): Promise<boolean>;
-    abstract async onComplete(scaffold: Scaffold, targetPath: string): Promise<boolean>;
+    abstract async onStart(scaffold: Scaffold, targetPath: string, options?: TemplateOptions): Promise<boolean>;
+    abstract async onComplete(scaffold: Scaffold, targetPath: string, options?: TemplateOptions): Promise<boolean>;
 }
 
 export type ScaffoldVariable = string | ScaffoldVariableConfig;
