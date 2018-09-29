@@ -32,8 +32,8 @@ export interface ScaffoldConfig {
  * Code for a scaffold (.scaffold.code.js)
  */
 export abstract class ScaffoldCode {
-    abstract async onStart(scaffold: Scaffold): Promise<boolean>;
-    abstract async onComplete(scaffold: Scaffold): Promise<boolean>;
+    abstract async onStart(scaffold: Scaffold, targetPath: string): Promise<boolean>;
+    abstract async onComplete(scaffold: Scaffold, targetPath: string): Promise<boolean>;
 }
 
 export type ScaffoldVariable = string | ScaffoldVariableConfig;
