@@ -28,7 +28,7 @@ export module ScaffoldTemplater {
         return new Promise<void>(async (resolve, reject) => {
             try {
                 if (scaffold.code && scaffold.code.onStart) {
-                    await scaffold.code.onStart(scaffold);
+                    await scaffold.code.onStart(scaffold, targetPath);
                 }
 
                 options.data = TemplateString.convertToTemplateStrings(options && options.data || {});
@@ -43,7 +43,7 @@ export module ScaffoldTemplater {
                 scaffoldFileNode(scaffold.files, targetPath, options);
 
                 if (scaffold.code && scaffold.code.onComplete) {
-                    await scaffold.code.onComplete(scaffold);
+                    await scaffold.code.onComplete(scaffold, targetPath);
                 }
                 resolve();
             } catch (e) {
