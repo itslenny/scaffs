@@ -12,6 +12,7 @@ import * as minimatch from 'minimatch';
 import { FileDataNode, FileDataNodeType, Scaffold } from '../contracts/scaffold';
 import { TemplateString } from './template-string';
 import { TemplateOptions, TemplateOptionsData } from '../contracts/template-options';
+import { FileUtils } from './file-utils';
 
 const FILE_NAME_REGEXP = /__.*?__/ig;
 
@@ -25,8 +26,12 @@ export module ScaffoldTemplater {
      * @param options - options used to generate the template
      */
     export function generateScaffold(scaffold: Scaffold, targetPath: string, options?: TemplateOptions): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
             try {
+                if (scaffold.code && scaffold.code.onStart) {
+                    await scaffold.code.onStart(scaffold, targetPath, options);
+                }
+
                 options.data = TemplateString.convertToTemplateStrings(options && options.data || {});
 
                 //expose lodash to template - TODO: maybe make this extensible to support other libraries
@@ -37,6 +42,10 @@ export module ScaffoldTemplater {
                 fs.ensureDirSync(targetPath);
 
                 scaffoldFileNode(scaffold.files, targetPath, options);
+
+                if (scaffold.code && scaffold.code.onComplete) {
+                    await scaffold.code.onComplete(scaffold, targetPath, options);
+                }
                 resolve();
             } catch (e) {
                 reject(e);
@@ -67,8 +76,9 @@ export module ScaffoldTemplater {
                 }
             } else {
                 let templateContent = fs.readFileSync(node.fullPath).toString();
-                let outputContent = _.template(templateContent)(data);
-
+                templateContent = FileUtils.escapeContent(templateContent);
+                let outputContent = _.template(templateContent)(Object.assign({}, data, { _filePath: targetFullPath }));
+                outputContent = FileUtils.unescapeContent(outputContent);
                 // update indention
                 if (options.indention && options.indention.length) {
                     const { indent } = detectIndent(outputContent);

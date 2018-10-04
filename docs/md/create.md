@@ -99,7 +99,7 @@ The file names also support the entire [templating api](#templating-api).
 
 ## Templating API
 
-Inside of the template files scaffs is powered by [lodash.template](https://lodash.com/docs/4.17.4#template) which uses `<% %>` as delimiters. If you want to insert a value use an equal like this: `<%= value %>` 
+Inside of the template files scaffs is powered by [lodash.template](https://lodash.com/docs/4.17.4#template) which uses `<% %>` as delimiters. If you want to insert a value use an equal like this: `<%= value %>`
 
 All variables specified in the `.scaffold.json` ([explained above](Template variables)) are available in the template.
 
@@ -109,13 +109,8 @@ The strings in the lodash are just like any other javascript string so you can u
 
 Additionally, scaffs extends the string prototype to include these useful utilities:
 
-| method | usage | example input | example output |
-| --- | --- | --- | --- |
-| toCamelCase | variable.toCamelCase() | some value here | someValueHere |
-| toProperCase | variable.toProperCase() | some value here | SomeValueHere |
-| toPascalCase | variable.toPascalCase() | some value here | SomeValueHere |
-| toKebabCase | variable.toKebabCase() | some value here | some\-value\-here |
-| toSnakeCase | variable.toSnakeCase() | some value here | some\_value\_here |
+https://www.npmjs.com/package/change-case
+e.g. For camel case you can use .toCamelCase(), so the name of the function prefixed with "to" and a capital first letter of the original name. Another example would be to use a constant case it would be toConstantCase().
 
 ### Objects
 

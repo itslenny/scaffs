@@ -1,6 +1,6 @@
 {
-  "name": "scaffs",
-  "version": "0.5.2",
+  "name": "@adrianriddle/scaffs",
+  "version": "0.5.8",
   "description": "A simple language agnostic scaffolder",
   "scripts": {
     "start": "tsc -w",
@@ -26,6 +26,7 @@
     "node": ">=5.0.0"
   },
   "dependencies": {
+    "change-case": "^3.0.2",
     "detect-indent": "^5.0.0",
     "fs-extra": "^2.1.2",
     "lodash": "^4.17.4",
@@ -37,7 +38,7 @@
     "@types/jasmine-node": "^1.14.31",
     "@types/lodash": "^4.14.61",
     "@types/minimatch": "^2.0.29",
-    "@types/node": "^7.0.12",
+    "@types/node": "^7.0.70",
     "gfms": "0.0.12",
     "jasmine": "^2.5.3",
     "jasmine-node": "^1.14.5",

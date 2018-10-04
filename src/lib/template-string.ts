@@ -2,11 +2,8 @@
  * Copyright (C) Lenny Urbanowski 2017.
  * Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  */
-
-const WORD_SPLIT_REGEXP = / \S|^\S/ig;
-const WORD_SPLIT_SKIP_FIRST_REGEXP = / \S/ig;
-const WORD_SPACES_REGEXP = / /ig;
-
+import * as changeCase from 'change-case';
+import * as path from 'path';
 export class TemplateString extends String {
 
     /**
@@ -34,39 +31,70 @@ export class TemplateString extends String {
     }
 
     /**
-     * Converts space delimited strings into camel case (e.g "some words here" === "someWordsHere")
-     */
-    public toCamelCase(): string {
-        return this.toString().toLowerCase().replace(WORD_SPLIT_SKIP_FIRST_REGEXP, v => v.trim().toUpperCase());
-    }
-
-    /**
      * Converts space delimited strings into proper case (e.g "some words here" === "SomeWordsHere")
      */
     public toProperCase(): string {
-        return this.toString().toLowerCase().replace(WORD_SPLIT_REGEXP, v => v.trim().toUpperCase());
-    }
-
-    /**
-     * Converts space delimited strings into pascal case (e.g "some words here" === "SomeWordsHere")
-     * alias of properCase()
-     */
-    public toPascalCase(): string {
-        return this.toProperCase();
+        return changeCase.pascal(this.toString());
     }
 
     /**
      * Converts space delimited strings into kebab case (e.g "some words here" === "some-words-here")
      */
     public toKebabCase(): string {
-        return this.toString().toLowerCase().replace(WORD_SPACES_REGEXP, '-');
+        return changeCase.param(this.toString());
     }
 
-    /**
-     * Converts space delimited strings into snake case (e.g "some words here" === "some_words_here")
-     */
+    public toCamelCase(): string {
+        return changeCase.camel(this.toString());
+    }
+    public toConstantCase(): string {
+        return changeCase.constant(this.toString());
+    }
+    public toDotCase(): string {
+        return changeCase.dot(this.toString());
+    }
+    public toHeaderCase(): string {
+        return changeCase.header(this.toString());
+    }
+    public toLowerCase(): string {
+        return changeCase.lower(this.toString());
+    }
+    public toLcFirstCase(): string {
+        return changeCase.lcFirst(this.toString());
+    }
+    public toNoCase(): string {
+        return changeCase.no(this.toString());
+    }
+    public toParamCase(): string {
+        return changeCase.param(this.toString());
+    }
+    public toPascalCase(): string {
+        return changeCase.pascal(this.toString());
+    }
+    public toPathCase(): string {
+        return changeCase.path(this.toString());
+    }
+    public toSentenceCase(): string {
+        return changeCase.sentence(this.toString());
+    }
     public toSnakeCase(): string {
-        return this.toString().toLowerCase().replace(WORD_SPACES_REGEXP, '_');
+        return changeCase.snake(this.toString());
+    }
+    public toSwapCase(): string {
+        return changeCase.swap(this.toString());
+    }
+    public toTitleCase(): string {
+        return changeCase.title(this.toString());
+    }
+    public toUpperCase(): string {
+        return changeCase.upper(this.toString());
+    }
+    public toUcFirstCase(): string {
+        return changeCase.ucFirst(this.toString());
+    }
+
+    public toRelativePath(filePath: string): string {
+        return path.relative(filePath, this.toString());
     }
 
 }

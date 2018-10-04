@@ -25,8 +25,11 @@ export module ScaffsConfigLoader {
                 const scaffsConfigPath = path.join(projectRoot, SCAFFS_CONFIG_FILE);
 
                 if (!FileUtils.existsSync(scaffsConfigPath)) {
-                    const defaultScaffsConfig = {
+                    const defaultScaffsConfig: ScaffsConfig = {
                         baseConfigPath: projectRoot,
+                        scaffs: {},
+                        scaffsPaths: [],
+                        absoluteScaffPaths: {},
                     };
                     return resolve(defaultScaffsConfig);
                 }
