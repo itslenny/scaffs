@@ -100,6 +100,7 @@ export module ScaffoldLoader {
             name: typeof variable === 'object' ? variable.name : variable,
             prompt: typeof variable === 'object' ? (variable.prompt || variable.name) : variable,
             optional: typeof variable === 'object' ? !!variable.optional : false,
+            type: typeof variable === 'object' ? variable.type : 'string',
         }));
     }
 }

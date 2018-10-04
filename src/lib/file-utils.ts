@@ -85,4 +85,12 @@ export module FileUtils {
             }
         }
     }
+    /** Escapes the template literals in the files */
+    export function escapeContent(content: string) {
+        return content.split('${').join('\\$\\{');
+    }
+    /** Unescapes the template literals in the files */
+    export function unescapeContent(content: string) {
+        return content.split('\\$\\{').join('${');
+    }
 }

@@ -38,7 +38,22 @@ export abstract class ScaffoldCode {
 }
 
 export type ScaffoldVariable = string | ScaffoldVariableConfig;
+export type ScaffoldVariableType = 'string' | 'number' | 'folder';
+export type ScaffoldVariableTypeOptions = ScaffoldFolderVariableTypeOptions;
 
+export interface ScaffoldFolderVariableTypeOptions {
+    type: 'folder';
+    options: ScaffoldOpenDialogOptions;
+}
+
+export interface ScaffoldOpenDialogOptions {
+    canSelectFiles?: boolean;
+    canSelectFolders?: boolean;
+    canSelectMany?: boolean;
+    defaultUri?: any;
+    filters?: any;
+    openLabel?: string;
+}
 /**
  * Configuration for individual scaffold variables
  */
@@ -49,6 +64,8 @@ export interface ScaffoldVariableConfig {
     prompt?: string;
     // allows this variable to be left blank (will default to an empty string)
     optional?: boolean;
+    // the data type of the variable, changes the prompt used in vscode
+    type?: ScaffoldVariableType | ScaffoldVariableTypeOptions;
 }
 
 /**

@@ -12,6 +12,7 @@ import * as minimatch from 'minimatch';
 import { FileDataNode, FileDataNodeType, Scaffold } from '../contracts/scaffold';
 import { TemplateString } from './template-string';
 import { TemplateOptions, TemplateOptionsData } from '../contracts/template-options';
+import { FileUtils } from './file-utils';
 
 const FILE_NAME_REGEXP = /__.*?__/ig;
 
@@ -75,8 +76,9 @@ export module ScaffoldTemplater {
                 }
             } else {
                 let templateContent = fs.readFileSync(node.fullPath).toString();
-                let outputContent = _.template(templateContent)(data);
-
+                templateContent = FileUtils.escapeContent(templateContent);
+                let outputContent = _.template(templateContent)(Object.assign({}, data, { _filePath: targetFullPath }));
+                outputContent = FileUtils.unescapeContent(outputContent);
                 // update indention
                 if (options.indention && options.indention.length) {
                     const { indent } = detectIndent(outputContent);
